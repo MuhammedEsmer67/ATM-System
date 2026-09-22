@@ -101,9 +101,9 @@ Withdrawals have two paths: Normal Withdraw only allows amounts in multiples of 
    - Otherwise: **File > New > Project > Console App (C++)**, then in Solution Explorer right-click **Source Files > Add > Existing Item** and add `main.cpp`; do the same for `clsDblLinkedList.h` under **Header Files**. Remove the auto-generated `.cpp` file.
 4. Press **Ctrl + F5** (Start Without Debugging). A console window shows the output.
 
-### Command line (g++)
+### PowerShell (g++)
 
 ```
-g++ -std=c++17 main.cpp -o dll
-./dll
+g++ -std=c++17 main.cpp -o ATMSystem
+.\ATMSystem
 ```
