@@ -44,7 +44,7 @@ namespace String
 	{
 		for (short i = 1; i <= Text.length(); i++)
 		{
-			if (Text[i - 1] != '*')
+			if (Text[i - 1] != ' ')
 				return Text.substr(i - 1, Text.length() - i + 1);
 		}
 
@@ -55,7 +55,7 @@ namespace String
 	{
 		for (short i = Text.length(); i >= 1; i--)
 		{
-			if (Text[i - 1] != '*')
+			if (Text[i - 1] != ' ')
 				return Text.substr(0, i);
 		}
 

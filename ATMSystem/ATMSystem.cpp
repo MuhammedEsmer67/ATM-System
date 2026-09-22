@@ -145,7 +145,7 @@ int fnDepositClientBalance(int DepositAmount)
 void prQuikWithdraw(vector <stClientData>& vClientsData)
 {
 	short OptionList = 0;
-	int QuikWithdrawOptions[9] = { 0,20,50,100,200,400,400,800,1000 };
+	int QuikWithdrawOptions[9] = { 0,20,50,100,200,400,800,1000 };
 
 	do
 	{
@@ -262,7 +262,7 @@ void prDeposit(vector <stClientData>& vClientsData)
 void prCheckBalance()
 {
 	cout << "\n_____________________________________________________\n";
-	cout << "\n\t\Check Balance Screen\n";
+	cout << "\n\t\tCheck Balance Screen\n";
 	cout << "_____________________________________________________\n";
 	cout << "Your Balance is: " << CurrentClient.AccountBalance << endl << endl;
 }
@@ -382,7 +382,6 @@ int main()
 	vector <stClientData> vClientsData = fnReadFromClientFile(ClientsFileName, Delim);
 
 	prLoginScreen(vClientsData);
-
 
 	system("pause > 0");
 	return 0;

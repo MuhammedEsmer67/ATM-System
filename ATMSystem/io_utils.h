@@ -79,9 +79,9 @@ namespace io
 		return PositiveNumber;
 	}
 
-	short fnReadPositiveFloatNumber(string Message)
+	float fnReadPositiveFloatNumber(string Message)
 	{
-		short PositiveFloatNumber = 0;
+		float PositiveFloatNumber = 0;
 
 		do
 		{

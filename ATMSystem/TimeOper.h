@@ -411,7 +411,7 @@ namespace Time
 
 	bool fnCheckIfPeriodsOverlap(stPeriod Period1, stPeriod Period2)
 	{
-		return !(fnCompareDateFunctions(Period2.StartDateInfo, Period1.EndDateInfo) == enCompareDates::Before || fnisDate1AfterDate2(Period1.StartDateInfo, Period2.EndDateInfo) == enCompareDates::After);
+		return !(fnCompareDateFunctions(Period2.StartDateInfo, Period1.EndDateInfo) == enCompareDates::After || fnisDate1AfterDate2(Period1.StartDateInfo, Period2.EndDateInfo));
 	}
 
 	bool fnCheckIfDateWithinPeriod(stPeriod Period, stDate DateToCheck)
@@ -419,37 +419,21 @@ namespace Time
 		return !(fnCompareDateFunctions(DateToCheck, Period.StartDateInfo) == enCompareDates::Before || fnCompareDateFunctions(Period.EndDateInfo, DateToCheck) == enCompareDates::After);
 	}
 
-	short fnCalculateOverlapDays(stPeriod Period1, stPeriod Period2)
+	short fnCalculateOverlapDays(Time::stPeriod Period1, Time::stPeriod Period2)
 	{
-		short Period1Length = fnCompareDateFunctions(Period1.StartDateInfo, Period1.EndDateInfo);
-		short Period2Length = fnCompareDateFunctions(Period2.StartDateInfo, Period2.EndDateInfo);
-		short OverlapDays = 0;
+		int overlap_days = 0;
+		Time::stDate start_edge;
+		Time::stDate end_edge;
 
-		if (fnCheckIfPeriodsOverlap(Period1, Period2))
-			return OverlapDays;
+		if (!Time::fnCheckIfPeriodsOverlap(Period1, Period2))
+			return overlap_days;
 
-		if (Period1Length < Period2Length)
-		{
-			while (fnisDate1BeforeDate2(Period1.StartDateInfo, Period1.EndDateInfo))
-			{
-				if (fnCheckIfDateWithinPeriod(Period2, Period1.StartDateInfo))
-					OverlapDays++;
+		start_edge = (Time::fnCompareDateFunctions(Period1.StartDateInfo, Period2.StartDateInfo) == Time::enCompareDates::Before) ? Period2.StartDateInfo : Period1.StartDateInfo;
+		end_edge = (Time::fnCompareDateFunctions(Period1.EndDateInfo, Period2.EndDateInfo) == Time::enCompareDates::After) ? Period2.EndDateInfo : Period1.EndDateInfo;
 
-				Period1.StartDateInfo = fnIncreaseDateOneDay(Period1.StartDateInfo);
-			}
-		}
-		else
-		{
-			while (fnisDate1BeforeDate2(Period2.StartDateInfo, Period2.EndDateInfo))
-			{
-				if (fnCheckIfDateWithinPeriod(Period1, Period2.StartDateInfo))
-					OverlapDays++;
+		overlap_days = Time::fnDate1Date2Difference(start_edge, end_edge, true);
 
-				Period2.StartDateInfo = fnIncreaseDateOneDay(Period2.StartDateInfo);
-			}
-		}
-
-		return OverlapDays;
+		return overlap_days;
 	}
 
 	bool fnisValidDate(stDate DateInfo)
@@ -457,28 +441,4 @@ namespace Time
 		return (Time::fnDaysInMonth(DateInfo.Month, DateInfo.Year) < DateInfo.Day) ? false : ((12 < DateInfo.Month) ? false : true);
 	}
 
-	//Time::stDate fnStringToDate(string DateAsString)
-	//{
-	//	vector <string> vDate;
-	//	Time::stDate DateInfo;
-
-	//	vDate = String::fnSplitString(DateAsString, "/");
-
-	//	DateInfo.Day = stoi(vDate[0]);
-	//	DateInfo.Month = stoi(vDate[1]);
-	//	DateInfo.Year = stoi(vDate[2]);
-
-	//	return DateInfo;
-	//}
-
-	//string fnFormatDate(stDate DateInfo, string Format = "dd/mm/yyyy")
-	//{
-	//	string FormattedDate = "";
-
-	//	FormattedDate = fnReplaceWordinString(Format, "dd", to_string(DateInfo.Day));
-	//	FormattedDate = fnReplaceWordinString(FormattedDate, "mm", to_string(DateInfo.Month));
-	//	FormattedDate = fnReplaceWordinString(FormattedDate, "yyyy", to_string(DateInfo.Year));
-
-	//	return FormattedDate;
-	//}
 }
