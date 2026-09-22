@@ -96,9 +96,7 @@ Withdrawals have two paths: Normal Withdraw only allows amounts in multiples of 
 
 1. Install Visual Studio Community with the **Desktop development with C++** workload.
 2. Clone the repo: `git clone https://github.com/MuhammedEsmer67/ATM-System.git`
-3. Open the project:
-   - If the repo contains a `.sln` file, double-click it.
-   - Otherwise: **File > New > Project > Console App (C++)**, then in Solution Explorer right-click **Source Files > Add > Existing Item** and add `main.cpp`; do the same for `clsDblLinkedList.h` under **Header Files**. Remove the auto-generated `.cpp` file.
+3. Open the project and double-click the `.sln` file.
 4. Press **Ctrl + F5** (Start Without Debugging). A console window shows the output.
 
 ### PowerShell (g++)
