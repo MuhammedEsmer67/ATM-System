@@ -102,6 +102,7 @@ Withdrawals have two paths: Normal Withdraw only allows amounts in multiples of 
 ### PowerShell (g++)
 
 ```
-g++ -std=c++17 main.cpp -o ATMSystem
+cd ATMSystem
+g++ -std=c++17 ATMSystem.cpp -o ATMSystem
 .\ATMSystem
 ```
